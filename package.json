@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "test.js",
   "scripts": {
-    "serve": "nodemon test.js",
+    "serve": "nodemon app.js",
     "serve2": "nodemon test2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
