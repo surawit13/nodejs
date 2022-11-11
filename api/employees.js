@@ -7,6 +7,17 @@ const jsonParser = bodyParser.json()
 const urlencoded = bodyParser.urlencoded({
     extended:false
 });
+
+router.use(function(req,res,next){
+    console.log('Time :' ,Date.now());
+    next();
+})
+
+router.use(function(req,res,next){
+    console.log('eieiei');
+    next();
+})
+
 router.get('/employeeAll',async (req,res) => {
     try{
         const employees = await Employee.find({});
