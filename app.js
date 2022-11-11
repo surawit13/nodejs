@@ -10,6 +10,7 @@ const urlencoded = bodyParser.urlencoded({
 const app = express();
 const cors = require('cors');
 app.use(bodyParser.json());
+const auth = require("./middleware/jwt")
 // support parsing of application/json type post data
 //app.use(bodyParser.json());
 
@@ -23,11 +24,11 @@ app.use(cors({
     methods : ['GET','POST','DELETE','PUT']
 }))
 
-app.use('/',function(err,req,res,next){
-    console.error(err.stack)
-    console.log('eiei');
-    next();
-})
+// app.use('/',function(err,req,res,next){
+//     console.error(err.stack)
+//     console.log('eiei');
+//     next();
+// })
 // app.use(function(req,res,next){
 //     console.log('Time :' ,Date.now());
 //     next();
@@ -112,7 +113,8 @@ app.use('/',function(err,req,res,next){
 //     res.send(obj.name);
 // });
 
-app.use('/api/employees',jsonParser, require('./api/employees'));
+app.use('/api/employees',jwt, require('./api/employees'));
+app.use('auth',require('./authentication/auth'));
 
 
 
