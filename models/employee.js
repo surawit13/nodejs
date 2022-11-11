@@ -13,6 +13,10 @@ const EmployeeSchema = new Schema({
 }
 , 
 { collection: 'employee' }
+,
+{
+  timestamps : true
+}
 );
 
 const EmployeeModel = connect.model('employee', EmployeeSchema);
