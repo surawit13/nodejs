@@ -17,6 +17,10 @@ const app = express();
 //     extended:false
 // }));
 // app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(cors({
+    orgin : '*',
+    methods : ['GET','POST','DELETE','PUT']
+}))
 app.use(bodyParser.json());
 
 app.get('/',(req,res) => {
