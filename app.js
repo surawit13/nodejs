@@ -11,6 +11,7 @@ const app = express();
 const cors = require('cors');
 app.use(bodyParser.json());
 const auth = require("./middleware/jwt")
+const jwt = require("jsonwebtoken");
 // support parsing of application/json type post data
 //app.use(bodyParser.json());
 
@@ -19,10 +20,10 @@ const auth = require("./middleware/jwt")
 //     extended:false
 // }));
 // app.use(bodyParser.json({ type: 'application/*+json' }))
-app.use(cors({
-    orgin : ['www.google.com'],
-    methods : ['GET','POST','DELETE','PUT']
-}))
+// app.use(cors({
+//     orgin : ['www.google.com'],
+//     methods : ['GET','POST','DELETE','PUT']
+// }))
 
 // app.use('/',function(err,req,res,next){
 //     console.error(err.stack)
@@ -113,8 +114,8 @@ app.use(cors({
 //     res.send(obj.name);
 // });
 
-app.use('/api/employees',jwt, require('./api/employees'));
-app.use('auth',require('./authentication/auth'));
+app.use('/api/employees',auth,require('./api/employees'));
+app.use('/auth',require('./authentication/auth'));
 
 
 

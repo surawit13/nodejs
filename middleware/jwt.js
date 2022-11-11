@@ -1,17 +1,20 @@
-const jwt = require("jsonwentoken");
-const { model } = require("mongoose");
-const config = process.env;
+// require('dotenv').config();
+const jwt = require("jsonwebtoken");
+// const { model } = require("mongoose");
+const {TOKEN_KEY} = process.env;
 const verifyToken = (req,res,next) =>{
-    const token = req.body.token || req.query.token || req.headers["x-access-token"];
+    console.log(req.headers)
+    const token = req.body.token || req.query.token || req.headers["x-access-token"] || req.headers["authorization"];
     if(!token){
-        return res.status(400).send("A token is required for auth");
+        return res.status(403).send("A token is required for auth");
 
     }
     try{
-        const decode = jwt.verify(token,config.TOKEN_KEY);
+        const decoded = jwt.verify(token,TOKEN_KEY);
         req.user = decoded;
     }catch(err)
     {
+        console.log(err)
         return res.status(401).send("Invalid Token");
     }
     return  next();

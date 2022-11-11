@@ -4,9 +4,12 @@ const Schema = mongoose.Schema;
 
 const EmployeeSchema = new Schema({
   name: 'string',
+  email : 'string',
+  password : 'string',
   salary: 'number',
   address: 'string',
-  department_id: 'string'
+  department_id: 'string',
+  token : 'string'
 }
 , 
 { collection: 'employee' }
